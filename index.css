@@ -1,0 +1,32 @@
+.Vgg {
+    background:url(./gray-laptop-computer-showing-html-codes-in-shallow-focus-160107.jpg) ;
+    height: 800px;
+}
+
+.overlay {
+    background: rgba(0, 0, 0, 0.5 );
+    height: 800px;
+}
+.card {
+    background-color: darkgray;
+    opacity: 0.9;
+    font-weight: bolder;
+    font-size: large;
+    box-shadow: 20px 20px rgba(0, 0, 0, 0.9);
+    
+}
+input {
+    border-radius: 20px !important;
+    
+}
+.error {
+    background-color: #e3c3c5;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 40%;
+    }
+}
+
+  
