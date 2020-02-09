@@ -1,8 +1,8 @@
 from flask import render_template, url_for, flash,redirect, request, Blueprint
-from VGGchallenge import  bcrypt, db
-from VGGchallenge.models import User, Projects, Actions
+from vgginternship import  bcrypt, db
+from vgginternship.models import User, Projects, Actions
 from flask_login import  current_user, login_required
-from VGGchallenge.projects.forms import projectForm, actionForm 
+from vgginternship.projects.forms import projectForm, actionForm 
 
 projects = Blueprint('projects', __name__)
 
