@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from vgginternship.config import Config
+from vgginternship.command import create_tables
 
 
 
@@ -39,6 +40,8 @@ def create_app():
     app.register_blueprint(users)
     app.register_blueprint(projects)
     app.register_blueprint(main)
+
+    app.cli.add_command(create_tables)
 
     return app
 
