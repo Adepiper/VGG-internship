@@ -16,17 +16,10 @@ def create_app():
     app = Flask(__name__)
     
     app.config['SECRET_KEY'] = 'e4b1815c5823da1786c3e1064793fec2'
-
-    #ENV = 'prod'
-
-    #if ENV == 'dev' : 
-        #app.debug = True
-        #app.config.from_object(Config)
-        #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Adeola2009.@localhost/VggInternship'
-    #else :
-        #app.debug = False
-       
-        #app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://vvtotfjyntpcaf:94b0960541c95c579ee2b6167bce87e5390397cd051a49888aa60a6d55f4b77f@ec2-3-234-109-123.compute-1.amazonaws.com:5432/d48mi4tt17c84'
+    db.init_app(app)
+    bcrypt.init_app(app)
+    login_manager.init_app(app)
+   
     ENV = 'prod'
 
     if ENV == 'dev' : 
