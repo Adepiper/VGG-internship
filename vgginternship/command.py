@@ -1,7 +1,7 @@
 import click
 from flask.cli import with_appcontext
 
-from vgginternship import db
+from vgginternship.extensions import db
 from vgginternship.models import User, Projects, Actions
 
 @click.command(name='create_tables')
