@@ -3,10 +3,19 @@
         {% for action in actions %}
           
                 
-        <a href=" {{url_for('projects.specificActionsId', project_id = project.id, action_id = action.id)}} ">
-                <h1>{{action.description}}</h1>
-                <p>{{action.note}}</p>
-            </a>
+        
+                <div class="container">
+                        <a href=" {{url_for('projects.specificActionsId', project_id = project.id, action_id = action.id)}} "></a>
+                        <div class="card mt-4">
+                                        <div class="card card-body">
+                                            <p>{{action.description}}</p>
+                                           <p>{{action.note}}</p> 
+                                        </div>
+                                    </a>
+                        </div>
+            
+
+
         {% endfor %}
         
         

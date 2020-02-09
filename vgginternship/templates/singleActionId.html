@@ -1,8 +1,27 @@
 {% extends "layout.html" %}
     {% block content %}
         <a href=" {{url_for('projects.specificActionsId', project_id = project.id, action_id = action.id)}} ">
-            <h1>{{action.description}}</h1>
-            <p>{{action.note}}</p>
+           
+            {{project.name}}
         </a>
-        
+
+        <div class="container">
+                <div class="card mt-4">
+                  <div class="card card-header text-center">
+                      <a href="{{ url_for('projects.projectz', project_id = project.id) }}"><h3>{{project.name}}</h3></a>
+                  </div>
+                  <div class="card card-body">
+                      <p> {{action.description}}</p>
+
+                      <div>
+                            <p>{{action.note}}</p>
+                      </div>
+                  </div>
+                  <div class="card card-footer">
+                      <a href="{{ url_for('projects.updateProject', project_id = project.id) }}">Update</a>
+                      <button type="button" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-sm">Delete</button>
+                  </div>
+                </div>
+    
+
     {% endblock content %}

@@ -24,7 +24,7 @@ def new_project():
         db.session.add(project)
         db.session.commit()
         flash('post created', 'success')
-        return redirect(url_for('project'))
+        return redirect(url_for('projects.project'))
     return render_template('newProject.html', form = form)
 
 
@@ -52,13 +52,14 @@ def updateProject(project_id):
         form.description.data = project.description
     return render_template('newProject.html', form = form)
 
-@projects.route('/project/<int:project_id>/delete', methods=['POST'])
+@projects.route('/project/<int:project_id>/delete', methods=['POST', 'GET'])
 @login_required
 def deleteProject(project_id):
-    project = Projects.query.get_or_404(project_id)
-    db.session.delete(project)
+    #project = Projects.query.get_or_404(project_id)
+    #db.session.delete(project)
+    Projects.query.filter_by(id = project_id).delete()
     db.session.commit()
-    flash('Updated', 'success')
+    flash('Deleted', 'success')
     return redirect(url_for('projects.project'))
 
 @projects.route('/project/<int:project_id>/actions', methods=['POST', 'GET'])

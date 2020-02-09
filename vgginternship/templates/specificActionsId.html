@@ -1,8 +1,16 @@
 {% extends "layout.html" %}
     {% block content %}
         
-            <h1>{{action.note}}</h1>
-            <p>{{action.description}}</p>
+    <div class="container">
             
+                <div class="card mt-4">
+                                <div class="card card-body">
+                                    <p>{{action.description}}</p>
+                                    <div>
+                                   <p>{{action.note}}</p>
+                                    </div> 
+                                </div>
+                                
+                              </div>
         
     {% endblock content %}

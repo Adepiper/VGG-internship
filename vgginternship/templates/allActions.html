@@ -2,14 +2,30 @@
     {% block content %}
         {% for action in actions %}
           
-                <div>
-                        <p>{{action.description}}</p>
-                </div>
-                
-                <div>
-                        <p>{{action.note}}</p>
+        <div class="container">
+            
+                <div class="card mt-4">
+                    <div class="card card-header mt-2 mx-4">
+                            <label for="description">Description</label>
                     </div>
-                
+                        
+                                <div class="card card-body mb-2 mx-4">
+                                            <p>{{action.description}}</p>
+                                    </div>
+                                    <div class="card card-header mt-2 mx-4">
+                                            <label for="description">Note</label>
+                                    </div>
+                                        
+                                                <div class="card card-body mb-2 mx-4">
+                                                        <p>{{action.note}}</p>
+                                                    </div>
+                                            
+                                               
+                                        </div>
+                                        
+                                </div>
+                                
+                              </div>
         {% endfor %}
         
         

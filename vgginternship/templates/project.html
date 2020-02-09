@@ -1,10 +1,22 @@
 {% extends "layout.html" %}
     {% block content %}
         {% for project in projects %}
-            <a href="{{ url_for('projects.projectz', project_id = project.id) }}"><h3>{{project.name}}</h3></a>
-            <p>{{project.description}}</p>
-            <a href="{{ url_for('projects.updateProject', project_id = project.id) }}">Update</a>
-            <button type="button" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-sm">Delete</button>
+        <div class="container">
+            <div class="card mt-4">
+              <div class="card card-header text-center">
+                  <a href="{{ url_for('projects.projectz', project_id = project.id) }}"><h3>{{project.name}}</h3></a>
+              </div>
+              <div class="card card-body">
+                  <p>{{project.description}}</p>
+              </div>
+              <div class="card card-footer">
+                <div class="form-group">
+                  <a class="form-control mb-2 text-center btn btn-primary" href="{{ url_for('projects.updateProject', project_id = project.id) }}">Update</a>
+                  <button type="button" data-toggle="modal" data-target="#deleteModal" class="btn btn-danger btn-sm form-control">Delete</button>
+                  </div>
+              </div>
+            </div>
+
             <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby=deleteModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                       <div class="modal-content">
@@ -15,7 +27,7 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                          ...
+                              Are you sure you want to delete?
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -25,6 +37,7 @@
                         </div>
                       </div>
                     </div>
+                  </div>
                   </div>
         {% endfor %}
         

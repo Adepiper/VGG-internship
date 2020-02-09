@@ -1,9 +1,9 @@
 {% extends "layout.html" %}
     {% block content %}
-      <div class="Vgg">
-          <div class="overlay">
-                        <div class="card-header text-center font-weight-bold">
-                                VGG Intership Form
+      <div class="container">
+          
+                        <div class="card-header mt-3 text-center font-weight-bold">
+                                Register
                           </div>
                         <div class="card card-form m-3" >
                             <div class="card-body m-4 ">
@@ -57,7 +57,12 @@
                                   <div class="form-group">
                                       {{form.submit(class="btn btn-outline-info")}}
                                   </div>
+
                                 </form>
+
+                                <div class="float-right">
+                                        <a class="text-secondary" href="{{ url_for('users.login') }}">Already signed up?</a>
+                                </div>
                             </div>
                         </div>
                         </div>

@@ -13,7 +13,7 @@ def create_app():
     app.config['SECRET_KEY'] = 'e4b1815c5823da1786c3e1064793fec2'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
-    ENV = 'dev'
+    ENV = 'prod'
 
     if ENV == 'dev' : 
         app.debug = True
