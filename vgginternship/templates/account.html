@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+    {% block content %}
+        <div class="content-session">
+            <div class="media">
+                <div class="media-body">
+                    <h3 class="account-heading">
+                        {{current_user.username}}
+                    </h3>
+                </div>
+            </div>
+            <div class="Vgg">
+                    <div class="overlay">
+                                  <div class="card card-form m-3" >
+                                      <div class="card-body m-4 ">
+                                          <form id="submitForm" method="POST"  action="">
+                                              {{ form.hidden_tag() }}
+                                            <fieldset class="form-group">
+                                                 <div class="form-group">
+                                                     {{form.username.label(class = 'form-control-label')}}
+                                                     {% if form.username.errors %}
+                                                     {{form.username(class = 'form-control form-control-lg is-invalid')}}
+                                                      <div class="invalid-feedback">
+                                                          {% for error in form.username.errors %}
+                                                              <span>{{ error }}</span>
+                                                          {% endfor %}
+                                                      </div>
+                                                     
+                                                     {% else %}
+                                                     {{form.username(class = 'form-control form-control-lg')}}
+                                                     {% endif %}
+                                                 </div> 
+                                            </fieldset>
+                                            <div class="form-group">
+                                                {{form.submit(class="btn btn-outline-info")}}
+                                            </div>
+                                          </form>
+                                      </div>
+                                  </div>
+                                  </div>
+                    </div>
+        </div>
+    {% endblock content %}

@@ -1,0 +1,4 @@
+class Config: 
+    SECRET_KEY = 'e4b1815c5823da1786c3e1064793fec2'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///VGGinternship.db'

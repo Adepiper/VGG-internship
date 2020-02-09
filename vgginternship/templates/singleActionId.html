@@ -1,0 +1,8 @@
+{% extends "layout.html" %}
+    {% block content %}
+        <a href=" {{url_for('projects.specificActionsId', project_id = project.id, action_id = action.id)}} ">
+            <h1>{{action.description}}</h1>
+            <p>{{action.note}}</p>
+        </a>
+        
+    {% endblock content %}

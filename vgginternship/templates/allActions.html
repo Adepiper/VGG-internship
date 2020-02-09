@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+    {% block content %}
+        {% for action in actions %}
+          
+                <div>
+                        <p>{{action.description}}</p>
+                </div>
+                
+                <div>
+                        <p>{{action.note}}</p>
+                    </div>
+                
+        {% endfor %}
+        
+        
+    {% endblock content %}
