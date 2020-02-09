@@ -13,10 +13,10 @@ def create_app():
     app.config['SECRET_KEY'] = 'e4b1815c5823da1786c3e1064793fec2'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     
-    ENV = 'prod'
+    ENV = 'dev'
 
     if ENV == 'dev' : 
-        app.debug = True
+        app.debug = False
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///VGGinternship.db'
     else :
         app.debug = False
