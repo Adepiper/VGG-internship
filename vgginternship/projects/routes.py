@@ -1,5 +1,5 @@
 from flask import render_template, url_for, flash,redirect, request, Blueprint
-from vgginternship import  bcrypt, db
+from vgginternship.extensions import  bcrypt, db
 from vgginternship.models import User, Projects, Actions
 from flask_login import  current_user, login_required
 from vgginternship.projects.forms import projectForm, actionForm 
