@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash,redirect, request, Blueprint
 from vgginternship.extensions import  bcrypt, db
 from vgginternship.models import User, Projects, Actions
 from flask_login import  current_user, login_required
-from vgginternship.projects.forms import projectForm, actionForm 
+from vgginternship.projects.forms import projectForm, actionForm, updateActionForm
 
 projects = Blueprint('projects', __name__)
 
@@ -55,14 +55,12 @@ def updateProject(project_id):
 @projects.route('/project/<int:project_id>/delete', methods=['POST', 'GET'])
 @login_required
 def deleteProject(project_id):
-    #project = Projects.query.get_or_404(project_id)
-    #db.session.delete(project)
     Projects.query.filter_by(id = project_id).delete()
     db.session.commit()
     flash('Deleted', 'success')
     return redirect(url_for('projects.project'))
 
-@projects.route('/project/<int:project_id>/actions', methods=['POST', 'GET'])
+@projects.route('/project/<int:project_id>/addActions', methods=['POST', 'GET'])
 @login_required
 def addActions(project_id):
     form = actionForm()
@@ -75,7 +73,7 @@ def addActions(project_id):
         return redirect(url_for('projects.project'))
     return render_template('addAction.html', form = form)
 
-@projects.route('/project/actions')
+@projects.route('/project/actions', methods=['POST', 'GET'])
 @login_required
 def allActions():
     actions = Actions.query.all()
@@ -84,23 +82,45 @@ def allActions():
 @projects.route('/project/actions/<int:action_id>')
 @login_required
 def allActionsId(action_id):
-    action = Projects.query.get_or_404(action_id)
+    action = Actions.query.get_or_404(action_id)
     return render_template('singleActionId.html', action=action)
 
 
 @projects.route('/project/<int:project_id>/action')
 @login_required
 def specificActions(project_id):
-    project = Projects.query.get_or_404(project_id)
-    actions = project.actions
-    return render_template('specificActions.html', actions=actions, project = project)
+    actions = Actions.query.filter_by(project_id = project_id)
+    return render_template('specificActions.html', actions=actions)
 
 
 @projects.route('/project/<int:project_id>/action/<int:action_id>')
 @login_required
 def specificActionsId(project_id, action_id):
+    action = Actions.query.get(action_id)
+    return render_template('specificActionsId.html', action=action)
+
+
+@projects.route('/project/<int:project_id>/action/<int:action_id>/update', methods=['GET', 'POST'])
+@login_required
+def updateActions(project_id, action_id):
+    action = Actions.query.get_or_404(action_id)
+    form = updateActionForm()
+    if form.validate_on_submit():
+        action.description = form.description.data
+        action.note = form.note.data
+        db.session.commit()
+        flash('Action updated', 'success')
+        return redirect(url_for('projects.specificActionsId', project_id = action.project_id, action_id = action.id))
+    elif request.method == 'GET':   
+        form.description.data = action.description
+        form.note.data = action.note
+    return render_template('updateActions.html', form = form)
+
+@projects.route('/project/<int:project_id>/action/<int:action_id>/delete', methods=['POST', 'GET'])
+@login_required
+def deleteAction(project_id, action_id):
     project = Projects.query.get_or_404(project_id)
-    action = project.actions.id
-    return render_template('specificActionsId.html', action=action, project=project )
-
-
+    Actions.query.filter_by(id = action_id).delete()
+    db.session.commit()
+    flash('Deleted', 'success')
+    return redirect(url_for('projects.specificActions', project_id = project.id))

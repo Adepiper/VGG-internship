@@ -16,5 +16,11 @@ class actionForm(FlaskForm):
     note = TextAreaField('note', validators=[DataRequired()])
     submit = SubmitField('Add')
 
+class updateActionForm(FlaskForm):
+    description = TextAreaField('description', validators=[DataRequired()])
+    note = TextAreaField('note', validators=[DataRequired()])
+    submit = SubmitField('Update Action')
+
+
 
 

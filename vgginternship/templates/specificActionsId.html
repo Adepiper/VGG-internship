@@ -4,13 +4,46 @@
     <div class="container">
             
                 <div class="card mt-4">
+                    <div class="card text-center card-header">
+                        <h4>{{action.name.name}}</h4>
+                    </div>
                                 <div class="card card-body">
-                                    <p>{{action.description}}</p>
-                                    <div>
-                                   <p>{{action.note}}</p>
-                                    </div> 
+                                        <label class="font-weight-bold" for="description">Description: </label>
+                                        <p>{{action.description}}</p>
+                                            <label class="font-weight-bold" for="Note">Note: </label>
+                                                    <p>{{action.note}}</p>
+                                                </div>
+                                <div class="card card-footer">
+                                    <div class="form-group">
+                                            <a class="form-control mb-2 text-center btn btn-primary" href="{{url_for('projects.updateActions', project_id = action.project_id, action_id = action.id)}}">Update action</a>
+                                            <button type="button" data-toggle="modal" data-target="#deleteActionModal" class="btn btn-danger btn-sm form-control">Delete</button>
+                                    </div>
                                 </div>
                                 
+                                
                               </div>
+
+                              <div class="modal fade" id="deleteActionModal" tabindex="-1" role="dialog" aria-labelledby=deleteActionModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="deleteActionModalLabel">Modal title</h5>
+                                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                        </div>
+                                        <div class="modal-body">
+                                              Are you sure you want to delete?
+                                        </div>
+                                        <div class="modal-footer">
+                                          <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                                          <form method="POST" action="{{ url_for('projects.deleteAction', project_id = action.project_id, action_id = action.id )}}">
+                                                <input type="submit" class="btn btn-danger" value="Delete">
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  </div>
         
     {% endblock content %}
