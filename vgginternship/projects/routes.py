@@ -12,7 +12,8 @@ projects = Blueprint('projects', __name__)
 @projects.route('/project')
 @login_required
 def project():
-    projects = Projects.query.all()
+    page = request.args.get('page', 1, type = int)
+    projects = Projects.query.paginate(page = page, per_page=3)
     return render_template('project.html', projects=projects)
 
 @projects.route('/project/new', methods = ['GET', 'POST'])
